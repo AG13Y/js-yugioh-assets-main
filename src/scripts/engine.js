@@ -13,15 +13,14 @@ const state = {
         player: document.getElementById("player-field-card"),
         computer: document.getElementById("computer-field-card")
     },
-    playerSides: {
-    player1: "player-cards",
-    player1BOX: document.querySelector("#player-cards"),
-    computer: "computer-cards",
-    computerBOX: document.querySelector("#computer-cards")
-},
     actions: {
         button: document.getElementById("next-duel"),
     }
+};
+
+const playerSides = {
+    player1: "player-cards",
+    computer: "computer-cards",
 };
 
 const pathImages = "./src/assets/icons/";
@@ -98,10 +97,11 @@ async function setCardsField(cardId) {
 }
 
 async function removeAllCardsImages() {
-    let {computerBOX, player1BOX} = state.playerSides;
+    let cards = document.querySelector("#computer-cards");
     let imgElements =cards.querySelectorAll("img")
     imgElements.forEach((img) => img.remove());
 
+    cards = document.querySelector("#player-cards");
     imgElements =cards.querySelectorAll("img")
     imgElements.forEach((img) => img.remove());
 }
@@ -112,7 +112,6 @@ async function drawSelectCard(index) {
     state.cardSprites.type.innerText = "Atribute : " + cardData[index].type;
     
 }
-
 
 async function drawCards(cardNumbers,fieldSide) {
     for (let i = 0; i < cardNumbers; i++) {
